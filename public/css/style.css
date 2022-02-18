@@ -1,0 +1,181 @@
+/* Author: Clinton S. Sheppard / csheppard4@myseneca.ca / WEB322 Assignment 1 */
+* {margin: 0; padding: 0; border: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400;}
+
+/* general styles */
+
+.jumbotron{
+    margin-top: 3em;
+    background: #fff url('../img/piqsels.com-id-omtxm.jpg') no-repeat center;
+    background-size: cover;
+}
+#footer{
+    text-align: center;
+    border-top: 1px solid #e1e1e1;
+}
+.footie{
+    font-size: 0.8em;
+    font-family: 'Work Sans'
+}
+
+/* text specifics */
+
+a:hover{
+    text-decoration: none;
+}
+h1{
+    font-size: 3em;
+    font-family: 'Work Sans';
+    font-weight: 400;
+}
+h2{
+    font-size: 2em;
+    font-family: 'Roboto';
+    font-weight: 400;
+    text-align: center;
+}
+h3{
+    font-size: 1.5em;
+    padding-top: 1em;
+}
+h4, h4 a{
+    color: #fff;
+    line-height: 3em;
+    font-family: 'Roboto';
+    font-weight: 400;
+    text-decoration: none;
+}
+.jumbotron h1{
+    color: #fff;
+    padding-bottom: 0.5em;
+    text-align: center;
+}
+.btn-fff-pink{
+    color: #fff;
+    background-color: #f76aa1;
+    border: 1px solid #e8015a;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.item img{
+    width: 15em;
+    height: 15em;
+    border-radius: 0.5em;
+    margin-bottom: 0.5em;
+}
+.strong{
+    font-size: 1.2em;
+}
+.shadowed{
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.logo{
+    width: 200px;
+    height: 200px;
+    background: transparent url('../img/LFF-Logo.png') no-repeat center;
+}
+.feature{
+    font-family: 'Work Sans';
+    font-weight: bold;
+    color: #6d1534;
+    text-align: center;
+    width: 15em;
+}
+p.desc{
+    color: #000;
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-size: 0.9em;
+}
+.feature img{
+    width: 125px;
+    height: 125px;
+    border: 1px solid #888;
+    border-radius: 0.3em;
+}
+.centre{
+    text-align: center;
+}
+input.error{
+    border: 1px solid  #ff0000;
+    border-radius: 0.5em;
+}
+p.error{
+    color: #ff0000;
+    font-size: 0.8em;
+}
+
+/* footer link styles */
+#footer h5{
+    text-align: left;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+#footer ul li{
+    list-style-type: none;
+    text-align: left;
+    margin-bottom: 0.5em;
+    line-height: 1em;
+}
+#footer a, #footer a:active{
+    font-size: 0.8em;
+    text-decoration: none;
+    color:  #4f4f4f;
+
+    display: block;
+}
+#footer a:hover{
+    color:  #d00f51;
+}
+
+.login-or{
+    font-size: 0.6em;
+}
+.googlebutton{
+    width: 9em;
+    color: #fff;
+    border: 1px solid #4285f4;
+    border-radius: 0.2em;
+    padding: 0.5em 0.8em 0.5em 3em;
+    background: #4285f4 url('../img/google-icon.png') no-repeat scroll left;
+    font-size: 0.9em;
+    font-family: 'Roboto';
+    font-weight: medium;
+    text-decoration: none;
+    text-align: center;
+    line-height: 5em;
+}
+
+/* parallax sections */
+
+.banner-one{
+    color: #fff;
+    text-align: center;
+
+    background-image: url("../img/mealstagram.png");
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.banner-two{
+    color: #fff;
+    text-align: center;
+
+    background-image: url("../img/clean-table.jpg");
+    
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.top-pad{
+    padding-top: 2.5em;
+}

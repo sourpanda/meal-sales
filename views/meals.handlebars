@@ -1,0 +1,21 @@
+<div class="row justify-content-center">
+    <div class="col">
+        <h2>Pick a package, choose your meals, achieve your goal - it's that easy!</h2>
+        <br>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+
+    {{#each package}}
+    <div class="col-lg-3 item centre">
+        <img src="img/{{this.img}}" alt="">
+        <p class="strong">{{this.name}}</p>
+        <p>{{this.description}}</p>
+        <button class="btn btn-fff-pink">Choose meals &rarr;</button>
+        <br>
+        <br>
+    </div>
+    {{/each}}
+
+</div>

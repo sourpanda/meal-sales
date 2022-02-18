@@ -1,0 +1,45 @@
+<form action="/meals/add" method="POST" enctype="multipart/form-data">
+
+{{#if dataReceived}}
+
+{{dataReceived}}
+
+{{/if}}
+<div class="row justify-content-md-center">
+    <div class="col-md-4 form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Name">
+        <br>
+        <label for="price">Price</label>
+        <input type="text" class="form-control" name="price" placeholder="$0.00">
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="top">
+            <label class="form-check-label" for="top">Top Meal</label>
+        </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label for="count">Number of meals contained</label>
+        <input type="text" class="form-control" name="count" placeholder="1">
+        <br>
+        <label for="category">Category</label>
+        <select name="category" class="form-control" id="category">
+            <option class="form-control">Top10</option>
+            <option class="form-control">Options</option>
+            <option class="form-control">Weight</option>
+            <option class="form-control">Beverages</option>
+        </select>
+        <br>
+        <label for="image">Image</label>
+        <input id="image" type="file" name="image" class="form-control-file"/>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col-md-8 form-group">
+        <textarea class="form-control" rows="3" name="desc" placeholder="Our nutrient-packed cleanser with meals & organic juice for up to 14 days"></textarea>
+        <br>
+        <button type="submit" class="btn btn-fff-pink">Add</button>
+    </div>
+</div>
+</form>

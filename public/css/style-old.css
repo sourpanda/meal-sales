@@ -1,0 +1,358 @@
+/* Author: Clinton S. Sheppard / csheppard4@myseneca.ca / WEB322 Assignment 1 */
+* {margin: 0; padding: 0; border: 0; font-family: Helvetica, Arial, sans-serif; font-weight: 400;}
+
+/* general styles */
+
+#container{
+    /* width: 100%; */
+    margin: 0 auto;
+}
+#headerbar{
+    background: #fff url('../img/piqsels.com-id-omtxm.jpg') no-repeat center;
+    background-size: cover;
+    padding-top: 7em;
+    padding-bottom: 7em;
+    text-align: center;
+    align-items: center;
+    margin-top: 2em;
+    justify-content: center;
+}
+#footer{
+    text-align: center;
+    padding: 10px 0;
+    margin-left: 7%;
+    margin-right: 7%;
+    border-top: 1px solid #e1e1e1;
+}
+.content{
+    display: block;
+    padding: 1.5em 1em 1em 1em;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+.flexbox{
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-flex{
+    justify-content: center;
+}
+.item{
+    padding: 0.5em;
+    margin: 0.5em;
+    text-align: center;
+}
+
+/* text specifics */
+
+h1{
+    font-size: 3em;
+    font-family: 'Work Sans';
+    font-weight: 400;
+}
+h2{
+    font-size: 2em;
+    font-family: 'Roboto';
+    font-weight: 400;
+    text-align: center;
+}
+h3{
+    font-size: 1.5em;
+    padding-top: 1em;
+}
+h4, h4 a{
+    color: #fff;
+    line-height: 3em;
+    font-family: 'Roboto';
+    font-weight: 400;
+    text-decoration: none;
+}
+#headerbar h1{
+    color: #fff;
+    padding-bottom: 0.5em;
+}
+#content h2{
+    font-family: 'Work Sans';
+    font-weight: bold;
+    color: #6d1534;
+    padding: 1.5em 0em;
+    font-size: 2.5em;
+}
+h4 a, .meal-btn{
+    display: inline;
+    color: #fff;
+    background-color: #f76aa1;
+    border: 1px solid #e8015a;
+    border-radius: 0.5em;
+    padding: 0.7em;
+    margin: 0.5em;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    text-decoration: none;
+}
+#register{
+    font-size: 1em;
+    color: #fff;
+    background-color: #f76aa1;
+    border: 1px solid #e8015a;
+    border-radius: 0.5em;
+    padding: 0.7em;
+    margin: 0.5em;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+p.meal-btn:hover, a{
+    text-decoration: none;
+}
+.header-button{
+    display: inline;
+}
+.packages .item{
+    flex-grow: 1;
+    width: 20%;
+    text-align: center;
+    padding: 0.7em;
+    font-size: 1em;
+    font-family: 'Roboto';
+    letter-spacing: 0.04em;
+    margin-bottom: 4em;
+}
+.packages .item img{
+    width: 15em;
+    height: 15em;
+    border-radius: 0.5em;
+}
+.strong{
+    font-size: 1.2em;
+    line-height: 2em;
+}
+.shadowed{
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.logo{
+    width: 200px;
+    height: 200px;
+    background: transparent url('../img/LFF-Logo.png') no-repeat center;
+}
+div.feature{
+    text-align: center;
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 160px;
+}
+.feature p{
+    font-family: 'Work Sans';
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #6d1534;
+    padding: 0.5em;
+}
+p.desc{
+    color: #000;
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-size: 0.9em;
+    padding: 0.3em;
+}
+.feature img{
+    width: 125px;
+    height: 125px;
+    border: 1px solid #888;
+    border-radius: 0.3em;
+}
+
+/* footer link styles */
+.footie{
+    font-size: 0.7em;
+    padding: 1em;
+}
+#footer .item{
+    width: 20%;
+}
+#footer h5{
+    text-align: left;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+#footer ul li{
+    list-style-type: none;
+    text-align: left;
+    margin-bottom: 0.5em;
+}
+#footer .flexbox{
+    justify-content: center;
+}
+#footer a, #footer a:active{
+    font-size: 0.8em;
+    text-decoration: none;
+    color:  #4f4f4f;
+}
+#footer a:hover{
+    color:  #d00f51;
+}
+
+/* navigation styles */
+
+div#navigation{
+    background-color: #fff;
+    padding: 0;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.4);
+}
+
+#navigation ul{
+    list-style-type: none;
+    overflow: hidden;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#navigation li {
+    float: left;
+    width: 100px;
+}
+#navigation li a, #navigation li a:active, #navigation li a:visited{
+    font-family: 'Roboto';
+    font-size: 1.1em;
+    color: #4f4f4f;
+    display: block;
+    padding: 10px 0;
+    text-decoration: none;
+    text-align: center;
+}
+#navigation li a:hover{
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-right{
+    float: right !important;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.sticky + .content {
+    padding-top: 60px;
+}
+
+/* Modal details */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    text-align: center;
+}
+.close , .close2{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover, .close:focus, .close2:hover, .close2:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+form{
+    padding-top: 0.8em;
+}
+input{
+    line-height: 0.8em;
+    padding: 0.4em;
+    border: 1px solid #4f4f4f;
+    border-radius: 0.5em;
+    margin: 0.5em;
+}
+.modal-content button, .content-flex button{
+    display: block;
+    font-size: 1em;
+    color: #fff;
+    background-color: #f76aa1;
+    border: 1px solid #e8015a;
+    border-radius: 0.5em;
+    padding: 0.7em;
+    margin: 0.5em auto;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.login-or{
+    font-size: 0.6em;
+}
+.login-or span{
+    text-decoration: line-through;
+    font-size: 1em;
+}
+.googlebutton{
+    width: 9em;
+    color: #fff;
+    border: 1px solid #4285f4;
+    border-radius: 0.2em;
+    padding: 0.5em 0.8em 0.5em 3em;
+    background: #4285f4 url('../img/google-icon.png') no-repeat scroll left;
+    font-size: 0.9em;
+    font-family: 'Roboto';
+    font-weight: medium;
+    text-decoration: none;
+    text-align: center;
+    line-height: 5em;
+}
+
+/* parallax sections */
+
+.banner-one{
+    color: #fff;
+
+    text-align: center;
+    padding-top: 10em;
+
+    height: 20em;
+    background-image: url("../img/mealstagram.png");
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.banner-two{
+    color: #fff;
+
+    text-align: center;
+    padding-top: 10em;
+
+    height: 20em;
+    background-image: url("../img/clean-table.jpg");
+    
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,0 +1,53 @@
+    <div class="row justify-content-md-center">
+        <div class="col-md-3 centre">
+                <h2>{{{title}}}</h2>
+            <a href="" class="googlebutton">Sign in with Google</a>
+            <hr>
+                <br>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-3 centre">
+            {{#each errorMessages}}
+            <p class="error">{{this}}</p>
+            {{/each}}
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        {{#if Errors}}
+        <div class="col-md-3 centre">
+            <div class="form-group">
+            <form action="/register" method="POST">
+                <input type="text" class="form-control error" name="first_name" placeholder="First name" value="{{p_fn}}">
+                <br>
+                <input type="text" class="form-control error" name="last_name" placeholder="Last name" value="{{p_ln}}">
+                <br>
+                <input type="text" class="form-control error" name="email" placeholder="Email" value="{{p_em}}">
+                <br>
+                <input type="password" class="form-control error" name="password" placeholder="Password">
+                <br>
+                <button type="submit" class="btn btn-fff-pink">Register</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    
+        {{else}}
+        <div class="col-md-3 centre">
+            <div class="form-group">
+            <form action="/register" method="POST">
+                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                <br>
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                <br>
+                <input type="text" class="form-control" name="email" placeholder="Email">
+                <br>
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <br>
+                <button type="submit" class="btn btn-fff-pink">Register</button>
+            </form>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+        

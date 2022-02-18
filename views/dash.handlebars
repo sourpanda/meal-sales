@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <h1>Hello, {{user.first_name}}</h1>
+    </div>
+
+</div>
+<div class="row justify-content-center">
+    
+    {{#if admin}}
+
+    <div class="col-4">
+        <h2>Account Information</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Name: {{user.first_name}} {{user.last_name}}</li>
+            <li class="list-group-item">Role: Admin</li>
+            <li class="list-group-item">Email: {{user.email}}</li>
+            <li class="list-group-item">Date created: {{user.createdOn}}</li>
+        </ul>
+        <hr>
+        <a href="/meals/add" class="btn btn-success">Add Meals</a>
+    
+
+    {{else}}
+    <div class="col-auto">
+        <p>Welcome to Live Fit Foods! This is where you'll find a dashboard.</p>
+
+        <h2> Account Information </h2>
+        <ul>
+            <li>Name: {{user.first_name}} {{user.last_name}}</li>
+            <li>Email: {{user.email}}</li>
+            <li>Date created: {{user.createdOn}}</li>
+        </ul>
+        
+    
+    {{/if}}
+    <a href="/logout" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+
+
