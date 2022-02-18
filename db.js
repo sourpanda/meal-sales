@@ -28,7 +28,7 @@ let Meals;
 
 module.exports.initialize = function(){
     return new Promise((resolve, reject)=>{
-        let monDB = mongoose.createConnection(`mongodb+srv://clint:${mongPW}@cluster0.qvzq8.mongodb.net/users?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true});
+	let monDB = mongoose.createConnection(`mongodb+srv://clint:${mongPW}@cluster0.qvzq8.mongodb.net/users?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true});
         monDB.on('error', (err) =>{
             reject(err);
         });
@@ -69,27 +69,33 @@ module.exports.addUser = function(data){ // create route - users
     });
 }
 
-module.exports.addMeal = function(data){ // create route - meals
-    return new Promise((resolve, reject) =>{
-        for(var formEntry in data){
-            if(data[formEntry] == "")
-            data[formEntry] = null;
-        }
-        let newMeal = new Meals(data);
-        newMeal.save((err) =>{
-            if(err){
-                console.log(`Error ocurred adding a meal: ${err}`);
-                reject(err);
-            } else {
-                console.log(`Added meal: ${newMeal.name}`);
-                resolve();
-            }
+module.exports.getPkgs = function(){ // READ route - meals
+    return new Promise((resolve, reject) => {
+        Meals.find({count: { $gt: 1 }})
+        .exec()
+        .then((foundMeals) => {
+            resolve(foundMeals.map(item=>item.toObject()));
+        }).catch((err) => {
+            console.log(`Error retrieving meal`);
+            reject(err);
         })
-
-    });
+    })
 }
 
-module.exports.getUsers = function(){
+module.exports.getPkg = function(data){ // READ route - packages
+    return new Promise((resolve, reject) => {
+        Meals.findOne({name: data})
+        .exec()
+        .then((foundPkg) => {
+            resolve(foundPkg.toObject());
+        }).catch((err) => {
+            console.log(`Error retrieving packages`);
+            reject(err);
+        })
+    })
+}
+
+module.exports.getUsers = function(){ // READ - users
     return new Promise((resolve, reject) => {
         Users.find()
         .exec()
@@ -144,7 +150,7 @@ module.exports.validateUser = (data) => {
     });
 }
 
-module.exports.editUser = (editData)=>{
+module.exports.editUser = (editData)=>{ // UPDATE route - users
     return new Promise((resolve, reject) =>{
         bcrypt.genSalt(10)
         .then(salt=>bcrypt.hash(editData.password,salt))
@@ -171,7 +177,7 @@ module.exports.editUser = (editData)=>{
     });
 }
 
-module.exports.deleteUserByEmail = (inEmail)=>{
+module.exports.deleteUserByEmail = (inEmail)=>{ // REMOVE route - users
     return new Promise((resolve, reject)=>{
         Users.deleteOne({email: inEmail})
         .exec()
@@ -182,4 +188,90 @@ module.exports.deleteUserByEmail = (inEmail)=>{
             reject();
         });
     });
+}
+
+
+module.exports.addMeal = function(data){ // create route - meals
+    return new Promise((resolve, reject) =>{
+        for(var formEntry in data){
+            if(data[formEntry] == "")
+            data[formEntry] = null;
+        }
+        let newMeal = new Meals(data);
+        newMeal.save((err) =>{
+            if(err){
+                console.log(`Error ocurred adding a meal: ${err}`);
+                reject(err);
+            } else {
+                console.log(`Added meal: ${newMeal.name}`);
+                resolve();
+            }
+        })
+
+    });
+}
+
+module.exports.getMeals = function(){ // READ route - meals
+    return new Promise((resolve, reject) => {
+        Meals.find({count: { $lt: 2 } })
+        .exec()
+        .then((foundMeals) => {
+            resolve(foundMeals.map(item=>item.toObject()));
+        }).catch((err) => {
+            console.log(`Error retrieving single meals`);
+            reject(err);
+        })
+    })
+}
+
+module.exports.getMeal = function(data){
+    return new Promise((resolve, reject) =>{
+        Meals.find({name: data})
+        .exec()
+        .then((foundMeal)=>{
+            resolve(foundMeal.toObject());
+        }).catch((err) =>{
+            console.log(`Can't find ${data}`);
+            reject(err);
+        })
+    })
+}
+
+module.exports.getMealById = function(data){
+    return new Promise((resolve, reject) =>{
+        Meals.findById(data)
+        .exec()
+        .then((foundMeal)=>{
+            resolve(foundMeal.toObject());
+        }).catch((err) =>{
+            console.log(`Can't find ${data}`);
+            reject(err);
+        })
+    })
+}
+
+module.exports.editMeal = (editData)=>{ // UPDATE route - meal
+    console.log(editData);
+    return new Promise((resolve, reject) =>{
+        Meals.updateOne(
+            {_id: editData},
+            {$set: {
+                name: editData.name,
+                price: editData.price,
+                count: editData.count,
+                category: editData.category,
+                top: editData.top,
+                description: editData.description
+                }
+            }).exec()
+            .then(()=>{
+                console.log(`${editData.name} has been updated!`);
+                resolve();
+            }).catch((err)=>{
+                console.log(`Error updating. ${err}`);
+                reject(err);
+            });
+        }).catch(() =>{
+            reject(`error updating meal`);
+        });
 }
