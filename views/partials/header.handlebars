@@ -31,6 +31,9 @@
                 <form action="/logout" class="form-inline ml-md-auto">
                     <button type="button" class="btn btn-outline-danger">Log Out</button>
                 </form>
+		<form method="get" action="/dash">
+		    <button type="button" class="btn btn-outline-info">Dashboard</button>
+		</form>
                 {{else}}
                 <form action="POST" class="form-inline ml-md-auto">
                     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#loginModal">Login</button>

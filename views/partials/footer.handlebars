@@ -14,8 +14,18 @@
                 <li><a href="https://livefitfood.ca/pages/contact-us">Other Contact Methods</a></li>
             </ul>
         </div>
-        
+       
+
         <div class="col-sm-2">
+	{{#if user }}
+	    <h5>Your Account</h5>
+		<ul>
+		<li><a href="/meals">View meal packages</a></li>
+		<li><a href="/dash">Dashboard</a></li>
+		<li><a href="/logout">Logout</a></li>
+		</ul>	
+
+	{{else}}
             <h5>Get Started</h5>
             <ul>
                 <li><a href="/meals">View meal packages</a></li>
@@ -23,6 +33,7 @@
                 <li><a href="/login">Login</a></li>
             </ul>
         </div>
+	{{/if}}
 
         <div class="col-sm-2">
             <h5>Contact Us</h5>
