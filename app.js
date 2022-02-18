@@ -6,9 +6,15 @@ const controllerG = require("./controllers/general.js");
 const db = require('./db.js');
 require('dotenv').config({path:"./config/keys.env"});
 const PORT = process.env.PORT;
-
 const app = express();
-const hbs = exphbs.create();
+var hbs = require('express-handlebars').create({
+  defaultLayout: 'main',
+  partialsDir: [
+      'views/partials/',
+      'views/fsPartials/'
+      ]
+  });
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public/'));
