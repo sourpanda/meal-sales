@@ -1,0 +1,56 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    function makeAJAXRequest(method, url, data){
+        if(data){ // Make an AJAX call using the provided data & method
+            console.log("Adding: "+data.name);
+            fetch(url, { 
+                method: method,
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json'} 
+            })
+            .then(response => response.json())
+            .then(json => {//responds with number of items in cart 
+                //changes the number beside the cart
+                $("span.glyphicon").text(`${json.data}`);
+            }).catch((err)=>{
+                console.log("Error Fetching");
+                alert(err.message);
+            }); 
+        }else{  // Make an AJAX call without providing data using the method
+            fetch(url, { method: method })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);   
+            }).catch((message)=>{
+                alert(message);
+            });
+        }
+    }
+    //makes ajax call to add a certain item by name to cart
+    function addToCart(data){
+        console.log("Calling add with: "+data);
+            makeAJAXRequest("POST", "/addProduct", {name: data});
+    }
+</script>
+
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <img src="../img/uploads/{{meal.img}}" class="img-fluid"/>
+        <p>{{meal.name}}</p>
+        {{#if user}}
+        <button type="button" onclick='addToCart("{{meal.name}}")' class="btn btn-lg btn-info">Add to cart</button>
+            {{#if admin}}
+            <a href="/meals/{{meal._id}}/edit" class="btn btn-lg btn-info">Edit meal details</a>
+            {{/if}}
+        </div>
+        <div class="col-auto">
+            <a href="/cart"><svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+            </svg></a>
+            <span class="glyphicon"> </span>
+            <p> </p>
+        {{/if}}
+    
+    </div>
+</div>
