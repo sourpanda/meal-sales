@@ -8,7 +8,7 @@ const path = require("path");
 
 router.use(clientSessions({ 
     cookieName: "session",
-    secret: "supersecretWEB322password",
+    secret: process.env.ROUTERSECRET,
     duration: 2 * 60 * 1000,
     activeDuration: 1000 * 60
 }));

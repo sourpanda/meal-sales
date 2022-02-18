@@ -1,0 +1,38 @@
+<form action="/meals/{{meal._id}}/edit" method="POST" enctype="multipart/form-data">
+
+{{#if dataReceived}}
+
+{{dataReceived}}
+
+{{/if}}
+<div class="row justify-content-md-center">
+    <div class="col-md-4 form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" value="{{meal.name}}">
+        <br>
+        <label for="price">Price</label>
+        <input type="text" class="form-control" name="price" Value="{{meal.price}}">
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label for="count">Number of meals contained</label>
+        <input type="text" class="form-control" name="count" value="{{meal.count}}">
+        <br>
+        <label for="category">Category</label>
+        <select name="category" class="form-control" id="category">
+            <option class="form-control">Top10</option>
+            <option class="form-control">Options</option>
+            <option class="form-control">Weight</option>
+            <option class="form-control">Beverages</option>
+            <option class="form-control">Deals</option>
+        </select>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col-md-8 form-group">
+        <textarea class="form-control" rows="3" name="description" placeholder="">{{meal.description}}</textarea>
+        <br>
+        <button type="submit" class="btn btn-fff-pink">Add</button>
+    </div>
+</div>
+</form>

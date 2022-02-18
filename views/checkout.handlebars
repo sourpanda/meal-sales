@@ -1,0 +1,85 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        function makeAJAXRequest(method, url, data){
+            if(data){ // Make an AJAX call using the provided data & method
+                console.log("Adding: "+data.name);
+                fetch(url, { 
+                    method: method,
+                    body: JSON.stringify(data),
+                    headers: { 'Content-Type': 'application/json'} 
+                })
+                .then(response => response.json())
+                .then(json => {//responds with number of items in cart
+                    $(".total").text(`Total: ${json.data.total}`);
+                    $("#list").empty();//emptys old container
+                    var htmlStr ="";
+                    (json.data.cart).forEach(x=>{ 
+                        htmlStr += '<div class="row cart-row justify-content-center">';
+                        htmlStr += '<div class="col-4">'
+                        htmlStr += '<img class="cart-item" src="/img/uploads/'+x.img+'" alt="'+x.name+'">';
+                        htmlStr += '</div>';
+                        htmlStr += '<div class="col-4">';
+                        htmlStr += '<p>'+x.name+'</p><p><em>'+x.description+'</em></p>'
+                        htmlStr += '</div>';
+                        htmlStr += '<div class="col-4">';
+                        htmlStr += '<p>$'+x.price+'</p>';
+                        htmlStr += `<button class="btn btn-sm btn-outline-danger" type="button" onclick='removeFromCart("${x.name}")'><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg></button>`;
+                        htmlStr += '</div></div>';   
+                    });
+                    $("#list").html(htmlStr);
+                }).catch((err)=>{
+                    console.log("Error Fetching");
+                    alert(err.message);
+                }); 
+            } else { 
+                fetch(url, { method: method })
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json);   
+                }).catch((message)=>{
+                    alert(message);
+                });
+            }
+        }
+        //
+        function removeFromCart(data){
+            console.log(`Removing ${data} from cart====`);
+                makeAJAXRequest("POST", "/removeItem", {name: data});
+        }
+    </script> 
+
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" id="list">
+            {{#each cartContents}}
+            <div class="row cart-row justify-content-center">    
+                <div class="col-4">
+                    <img src="../img/uploads/{{this.img}}" class="cart-item"/>
+                </div>
+                <div class="col-4">
+                    <p>{{this.name}}</p>
+                    <p><em>{{this.description}}</em></p>
+                </div>
+                <div class="col-4">
+                    <p>${{this.price}}</p>
+                    <button  type="button" class="btn btn-sm btn-outline-danger" onclick='removeFromCart("{{this.name}}")'><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg></button>
+                </div>
+            </div>
+            {{/each}}   
+        </div>
+        <div class="col-md-3">
+            <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+            </svg>
+            <p>${{total}}</p>
+            <a href="/cart/checkout" class="btn btn-lg btn-outline-success">Checkout</a>
+        </div>
+    </div>
